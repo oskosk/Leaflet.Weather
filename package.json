@@ -1,6 +1,6 @@
 {
   "name": "Leaflet.Weather",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A Leaflet plugin for adding a weather widget to the map using OpenWeatherMap API",
   "main": "Leaflet.Weather.js",
   "directories": {
