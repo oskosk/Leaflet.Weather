@@ -5,7 +5,7 @@ L.Control.Weather = L.Control.extend({
     lang: "en",
     cssClass: "leaflet-control-weather",
     iconUrlTemplate: "http://openweathermap.org/img/w/:icon",
-    template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°</div><div>H: :humidity%</div><div>W: :windirection :windspeed</div>',
+    template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°</div><div>H: :humidity%</div><div>W: :winddirection :windspeed</div>',
     translateWindDirection: function(text) {
       return text;
     }
@@ -47,7 +47,7 @@ L.Control.Weather = L.Control.extend({
     tpl = tpl.replace(":temperature", weather.main.temp);
     tpl = tpl.replace(":humidity", weather.main.humidity);
     tpl = tpl.replace(":windspeed", weather.wind.speed);
-    tpl = tpl.replace(":windirection", this.mapWindDirection(weather.wind.deg));
+    tpl = tpl.replace(":winddirection", this.mapWindDirection(weather.wind.deg));
     tpl = tpl.replace(":windegrees", weather.wind.deg);
     $(this._div).html(tpl);
   },
