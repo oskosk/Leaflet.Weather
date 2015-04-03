@@ -43,9 +43,20 @@ Include the CSS and JS in your HTML.
 ### Options
 
 * `position` - Leaflet [position option](http://leafletjs.com/reference.html#control-positions) for Controls.
-* `lang` - The language for response API.
-* `units` - The units of measurment for API responses.
-
+* `lang` - The language for response API. Default: `"en"`.
+* `units` - The units of measurment for API responses. Default: `"internal"`.
+* `cssClass` - CSS class to apply to the `<div>` of the contorl. Default: `"leaflet-control-weather"`
+* `iconUrlTemplate` - The URL template for the weather icon. Default: `"http://openweathermap.org/img/w/:icon"`.
+* `template` - The _template_ where API values are replaced into the widget. Default:
+```
+"<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°</div><div>H: :humidity%</div><div>W: :winddirection :windspeed</div>"
+```
+* `translateWindDirection` - {Function}. A function you may pass to translate the text for wind direction. Default:
+```
+translateWindDirection: function(text) {
+      return text;
+}
+```
 ## License 
 
 The MIT License (MIT)
