@@ -8,18 +8,22 @@ L.Control.Weather = L.Control.extend({
     template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°F</div><div>H: :humidity%</div><div>W: :winddirection :windspeed m/s</div>',
     translateWindDirection: function(text) {
       return text;
-    }
+    },
+    updateWidget: undefined
   },
   onAdd: function(map) {
     this._div = L.DomUtil.create('div', this.options.cssClass);
     this.onMoveEnd = onMoveEnd.bind(this);
-    this.refresh(this.updateWidget.bind(this));
+    if (!this.options.updateWidget) {
+      this.options.updateWidget = this._updateWidget.bind(this);
+    }
+    this.refresh(this.options.updateWidget.bind(this));
     this._map.on("moveend", this.onMoveEnd);
 
     function onMoveEnd() {
       var _this = this;
       this.refresh(function(weather) {
-        _this.updateWidget(weather);
+        _this.options.updateWidget(weather);
       });
     }
     return this._div;
@@ -39,8 +43,7 @@ L.Control.Weather = L.Control.extend({
       callback(weather);
     });
   },
-  updateWidget: function(weather) {
-    console.log(weather);
+  _updateWidget: function(weather) {
     var iconUrl = this.options.iconUrlTemplate.replace(":icon", weather.weather[0].icon + ".png");
     var tpl = this.options.template;
     tpl = tpl.replace(":iconurl", iconUrl);
