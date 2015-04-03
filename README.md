@@ -49,7 +49,7 @@ Include the CSS and JS in your HTML.
 * `iconUrlTemplate` - The URL template for the weather icon. Default: `"http://openweathermap.org/img/w/:icon"`.
 * `template` - The _template_ where API values are replaced into the widget. Default:
 ```
-"<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°</div><div>H: :humidity%</div><div>W: :winddirection :windspeed</div>"
+"<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°F</div><div>H: :humidity%</div><div>W: :winddirection :windspeed m/s</div>"
 ```
 * `translateWindDirection` - {Function}. A function you may pass to translate the text for wind direction. Default:
 ```
