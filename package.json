@@ -1,0 +1,28 @@
+{
+  "name": "Leaflet.Weather",
+  "version": "1.0.0",
+  "description": "A Leaflet plugin for adding a weather widget to the map using OpenWeatherMap API",
+  "main": "Leaflet.Weather.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publishdemo": "git subtree push --prefix demo origin gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oskosk/Leaflet.Weather"
+  },
+  "keywords": [
+    "leaflet",
+    "weather",
+    "control"
+  ],
+  "author": "osk <oskosk@gmail.com> (http://olopez.com.ar/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oskosk/Leaflet.Weather/issues"
+  },
+  "homepage": "https://github.com/oskosk/Leaflet.Weather"
+}
