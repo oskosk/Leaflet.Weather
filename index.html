@@ -7,8 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>  
     <!-- Weather -->
-    <link href="../Leaflet.Weather.css" rel="stylesheet" type="text/css" />
-    <script src="../Leaflet.Weather.js"></script>  
+    <link href="Leaflet.Weather.css" rel="stylesheet" type="text/css" />
+    <script src="Leaflet.Weather.js"></script>  
     <meta charset="utf-8">
     <title>JS Bin</title>
   </head>
@@ -18,7 +18,7 @@
       $(function() {
 
         // create a map in the "map" div, set the view to a given place and zoom
-         map = L.map('map').setView([-34, -59], 13);
+         map = L.map('map').setView([-34.5817, -58.4244], 13);
 
         // add an OpenStreetMap tile layer
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

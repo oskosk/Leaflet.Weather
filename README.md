@@ -1,6 +1,8 @@
 # Leaflet.Weather
 A Leaflet plugin for adding a weather widget to the map using [OpenWeatherMap](http://openweathermap.org/) API
 
+See the [demo](https://oskosk.github.io/Leaflet.Weather).
+
 ## Dependencies
 
 **This version depends on jQuery for DOM manipulation**.

@@ -1,6 +1,6 @@
 {
   "name": "Leaflet.Weather",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Leaflet plugin for adding a weather widget to the map using OpenWeatherMap API",
   "main": "Leaflet.Weather.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publishdemo": "git subtree push --prefix demo origin gh-pages"
+    "publishdemo": "git checkout gh-pages && git merge develop && git push origin gh-pages"
   },
   "repository": {
     "type": "git",

@@ -3,21 +3,15 @@ L.Control.Weather = L.Control.extend({
     position: "bottomleft",
     units: "internal",
     lang: "en",
-    iconUrlTemplate: "http://openweathermap.org/img/w/:icon"
+    cssClass: "leaflet-control-weather",
+    iconUrlTemplate: "http://openweathermap.org/img/w/:icon",
+    template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°</div><div>H: :humidity%</div><div>W: :windirection :windspeed</div>',
+    translateWindDirection: function(text) {
+      return text;
+    }
   },
   onAdd: function(map) {
-    this._div = L.DomUtil.create('div', '');
-    this._temperature = L.DomUtil.create('div', '');
-    this._humidity = L.DomUtil.create('div', '');
-    this._wind = L.DomUtil.create('div', '');
-    this._icon = L.DomUtil.create('div', 'weatherIcon');
-    this.$div = $(this._div);
-    this.$div.addClass("leaflet-control-weather");
-    $(this._icon).append($("<img />"));
-    this.$div.append(this._icon);
-    this.$div.append(this._temperature);
-    this.$div.append(this._humidity);
-    this.$div.append(this._wind);
+    this._div = L.DomUtil.create('div', this.options.cssClass);
     this.onMoveEnd = onMoveEnd.bind(this);
     this.refresh(this.updateWidget.bind(this));
     this._map.on("moveend", this.onMoveEnd);
@@ -28,7 +22,7 @@ L.Control.Weather = L.Control.extend({
         _this.updateWidget(weather);
       });
     }
-    return this.$div.get(0);
+    return this._div;
   },
   onRemove: function(map) {
     this._map.off("moveend", this.onMoveEnd);
@@ -46,12 +40,76 @@ L.Control.Weather = L.Control.extend({
     });
   },
   updateWidget: function(weather) {
-    var iconUrl = this.options.iconUrlTemplate.replace(":icon", weather.weather[0].icon + ".png");
     console.log(weather);
-    $(this._icon).find("img").attr("src", iconUrl);
-    $(this._temperature).html(weather.main.temp);
-    $(this._humidity).html(weather.main.humidity);
-    $(this._wind).html(weather.wind.speed);
+    var iconUrl = this.options.iconUrlTemplate.replace(":icon", weather.weather[0].icon + ".png");
+    var tpl = this.options.template;
+    tpl = tpl.replace(":iconurl", iconUrl);
+    tpl = tpl.replace(":temperature", weather.main.temp);
+    tpl = tpl.replace(":humidity", weather.main.humidity);
+    tpl = tpl.replace(":windspeed", weather.wind.speed);
+    tpl = tpl.replace(":windirection", this.mapWindDirection(weather.wind.deg));
+    tpl = tpl.replace(":windegrees", weather.wind.deg);
+    $(this._div).html(tpl);
+  },
+  /**
+   * Maps from wind direction in degrees to cardinal points
+   * According to :
+   * http://climate.umn.edu/snow_fence/components/winddirectionanddegreeswithouttable3.htm
+   */
+  mapWindDirection: function(degrees) {
+    var text = "";
+    if (inRange(degrees, 11.25, 33.75)) {
+      text = "NNE";
+    } else if (inRange(degrees, 33.75, 56.25)) {
+      text = "NE";
+    } else if (inRange(degrees, 56.25, 78.75)) {
+      text = "ENE";
+    } else if (inRange(degrees, 78.75, 101.25)) {
+      text = "E";
+    } else if (inRange(degrees, 101.25, 123.75)) {
+      text = "ESE";
+    } else if (inRange(degrees, 123.75, 146.25)) {
+      text = "SE";
+    } else if (inRange(degrees, 146.25, 168.75)) {
+      text = "SSE";
+    } else if (inRange(degrees, 168.75, 191.25)) {
+      text = "S";
+    } else if (inRange(degrees, 191.25, 213.75)) {
+      text = "SSW";
+    } else if (inRange(degrees, 213.75, 236.25)) {
+      text = "SW";
+    } else if (inRange(degrees, 236.25, 258.75)) {
+      text = "WSW";
+    } else if (inRange(degrees, 258.75, 281.25)) {
+      text = "W";
+    } else if (inRange(degrees, 281.25, 303.75)) {
+      text = "WNW";
+    } else if (inRange(degrees, 303.75, 326.25)) {
+      text = "NW";
+    } else if (inRange(degrees, 326.25, 348.75)) {
+      text = "NNW";
+    } else if (inRange(degrees, 348.75, 11.25)) {
+      text = "N";
+    }
+    return this.options.translateWindDirection(text);
+
+    function inRange(val, min, max) {
+      // Special case for north like comparation
+      if (max < min) {
+        if (val >= min && val < 360) {
+          return true;
+        }
+        if (val > 0 && val < max) {
+          return true;
+        }
+        return false;
+      }
+      // Al other directions
+      if (val >= min && val <= max) {
+        return true;
+      }
+      return false;
+    }
   }
 });
 
