@@ -3,12 +3,13 @@
   bottom:20px;
   left:60px;
   color:#fff;
+  font-weight: bold;
   z-index:101;
   background:#666;
   padding:7px;
-  opacity:.6;
+  opacity:0.8;
   font-size:0.9em;
-  width:170px;
+  width:190px;
 }
 
 .leaflet-control-weather .weatherIcon {
