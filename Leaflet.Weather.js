@@ -3,6 +3,7 @@ L.Control.Weather = L.Control.extend({
     position: "bottomleft",
     units: "internal",
     lang: "en",
+    event: "moveend"
     cssClass: "leaflet-control-weather",
     iconUrlTemplate: "http://openweathermap.org/img/w/:icon",
     template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°F</div><div>H: :humidity%</div><div>W: :winddirection :windspeed m/s</div>',
@@ -18,7 +19,7 @@ L.Control.Weather = L.Control.extend({
       this.options.updateWidget = this._updateWidget.bind(this);
     }
     this.refresh(this.options.updateWidget.bind(this));
-    this._map.on("moveend", this.onMoveEnd);
+    this._map.on(this.options.event, this.onMoveEnd);
 
     function onMoveEnd() {
       var _this = this;
@@ -29,7 +30,7 @@ L.Control.Weather = L.Control.extend({
     return this._div;
   },
   onRemove: function(map) {
-    this._map.off("moveend", this.onMoveEnd);
+    this._map.off(this.options.event, this.onMoveEnd);
   },
   refresh: function(callback) {
     var _this = this,
