@@ -3,7 +3,7 @@ L.Control.Weather = L.Control.extend({
     position: "bottomleft",
     units: "internal",
     lang: "en",
-    event: "moveend"
+    event: "moveend",
     cssClass: "leaflet-control-weather",
     iconUrlTemplate: "http://openweathermap.org/img/w/:icon",
     template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°F</div><div>H: :humidity%</div><div>W: :winddirection :windspeed m/s</div>',
