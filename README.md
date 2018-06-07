@@ -4,9 +4,7 @@ A Leaflet plugin for adding a weather widget to the map using [OpenWeatherMap](h
 
 See the [demo](https://oskosk.github.io/Leaflet.Weather) (Currently now working. See message below).
 
-**IMPORTANT:** **OpenWeatherMap API** now requires you to get an API Key. So this plugin is no longer working. I'm working on an update
-to enable OpenWeatherMap API keys for this plugin.
-
+**IMPORTANT:** **OpenWeatherMap API** now requires you to get an API Key. You can get it [here](https://openweathermap.org/api)
 ## Dependencies
 
 **This version depends on jQuery for DOM manipulation**.
@@ -24,13 +22,13 @@ Include the CSS and JS in your HTML.
      map = L.map('map').setView([-34, -59], 13);
 
     // add an OpenStreetMap tile layer
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    }).addTo(map);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 
     // add the weather control
     L.control.weather({
       lang: "es",
-      units: "metric"
+      units: "metric",
+      appid: "your-app-id"
     }).addTo(map);      
 
 
