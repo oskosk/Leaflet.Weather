@@ -35,11 +35,14 @@ L.Control.Weather = L.Control.extend({
   refresh: function(callback) {
     var _this = this,
       center = this._map.getCenter(),
-      url = "http://api.openweathermap.org/data/2.5/weather?lat=:lat&lon=:lng&lang=:lang&units=:units";
+      url = "http://api.openweathermap.org/data/2.5/weather?lat=:lat&lon=:lng&lang=:lang&units=:units&appid=:appkey";
+    var apiKey = this.options.apiKey;
+
     url = url.replace(":lang", this.options.lang);
     url = url.replace(":units", this.options.units);
     url = url.replace(":lat", center.lat);
     url = url.replace(":lng", center.lng);
+    url = url.replace(":appkey", apiKey);
     $.getJSON(url, function(weather) {
       callback(weather);
     });
@@ -120,5 +123,8 @@ L.Control.Weather = L.Control.extend({
 
 
 L.control.weather = function(options) {
+  if (!options.apiKey) {
+    console.warn("Leaflet.Weather: You must provide an OpenWeather API key.\nPlease see https://openweathermap.org/faq#error401 for more info");
+  }
   return new L.Control.Weather(options);
 };
