@@ -16,7 +16,7 @@ to enable OpenWeatherMap API keys for this plugin.
 Include the CSS and JS in your HTML.
 
     <link href="Leaflet.Weather.css" rel="stylesheet" type="text/css" />
-    <script src="Leaflet.Weather.js"></script>  
+    <script src="Leaflet.Weather.js"></script>
 
 ## Example
 
@@ -24,14 +24,14 @@ Include the CSS and JS in your HTML.
      map = L.map('map').setView([-34, -59], 13);
 
     // add an OpenStreetMap tile layer
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     }).addTo(map);
 
     // add the weather control
     L.control.weather({
       lang: "es",
       units: "metric"
-    }).addTo(map);      
+    }).addTo(map);
 
 
 ## Usage
@@ -42,7 +42,7 @@ Include the CSS and JS in your HTML.
 ### Factory usage
 
 
-    L.control.weather(options).addTo(map); 
+    L.control.weather(options).addTo(map);
 
 ### Options
 
@@ -52,17 +52,17 @@ Include the CSS and JS in your HTML.
 * `cssClass` - CSS class to apply to the `<div>` of the contorl. Default: `"leaflet-control-weather"`
 * `iconUrlTemplate` - The URL template for the weather icon. Default: `"http://openweathermap.org/img/w/:icon"`.
 * `updateWidget` - {Function}. Pass a function as the `updateWidget` option to override the behaviour of the rendering.
-  * `weather` - Your custom `updateWidget` function will receive a `weather` object as is returned by the 
+  * `weather` - Your custom `updateWidget` function will receive a `weather` object as is returned by the
   [OpenWeatherMap API](http://openweathermap.org/api).
-* `translateWindDirection` - {Function}. A function you may pass to translate the text for wind direction. 
+* `translateWindDirection` - {Function}. A function you may pass to translate the text for wind direction.
   * `text` - Your custom function will receive a `text` parameter with a text like `"S"`, `"SW"`, `"SSW"`, `"W"`, etc. for each direction.
   The API return values in degrees for the wind direction and the internal maping from degree to text is done according to the table in [Wind Direction and Degrees](http://climate.umn.edu/snow_fence/components/winddirectionanddegreeswithouttable3.htm).
 * `template` - The _template_ where API values are replaced into the widget. Default:
-``` 
+```
 "<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°F</div><div>H: :humidity%</div><div>W: :winddirection :windspeed m/s</div>"
 ```
 
-## License 
+## License
 
 The MIT License (MIT)
 
