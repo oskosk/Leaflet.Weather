@@ -4,8 +4,8 @@ A Leaflet plugin for adding a weather widget to the map using [OpenWeatherMap](h
 
 See the [demo](https://oskosk.github.io/Leaflet.Weather) (Currently now working. See message below).
 
-**IMPORTANT:** **OpenWeatherMap API** now requires you to get an API Key. So this plugin is no longer working. I'm working on an update
-to enable OpenWeatherMap API keys for this plugin.
+**IMPORTANT:** OpenWeatherMap requires you to get an API Key.
+Visit https://openweathermap.org/appid#signup to sign up.
 
 ## Dependencies
 
@@ -29,6 +29,7 @@ Include the CSS and JS in your HTML.
 
     // add the weather control
     L.control.weather({
+      apikey: {API_KEY}
       lang: "es",
       units: "metric"
     }).addTo(map);
@@ -46,6 +47,7 @@ Include the CSS and JS in your HTML.
 
 ### Options
 
+* `apiKey` - **Required**: OpenWeather API key. See https://openweathermap.org/appid#signup.
 * `position` - Leaflet [position option](http://leafletjs.com/reference.html#control-positions) for Controls.
 * `lang` - The language for response API. Default: `"en"`.
 * `units` - The units of measurment for API responses. Default: `"internal"`.
