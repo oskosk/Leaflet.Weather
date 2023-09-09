@@ -3,10 +3,10 @@
   <head>
     <script src="//code.jquery.com/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <!-- Weather -->
     <link href="Leaflet.Weather.css" rel="stylesheet" type="text/css" />
-    <script src="Leaflet.Weather.js"></script>  
+    <script src="Leaflet.Weather.js"></script>
     <meta charset="utf-8">
     <title>Leaflet.Weather</title>
   </head>
@@ -17,17 +17,20 @@
     </p>
     <div id="map" style="height:400px"></div>
     <script>
+      const apiKey = '489c3d104ae5fa52cce724e52a84621a';
       $(function() {
 
         // create a map in the "map" div, set the view to a given place and zoom
          map = L.map('map').setView([-34.5817, -58.4244], 13);
 
         // add an OpenStreetMap tile layer
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.control.weather().addTo(map);      
+        L.control.weather({
+          apiKey
+        }).addTo(map);
       });
     </script>
   </body>
