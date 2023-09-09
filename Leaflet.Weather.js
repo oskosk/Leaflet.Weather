@@ -5,7 +5,7 @@ L.Control.Weather = L.Control.extend({
     lang: "en",
     event: "moveend",
     cssClass: "leaflet-control-weather",
-    iconUrlTemplate: "http://openweathermap.org/img/w/:icon",
+    iconUrlTemplate: "https://openweathermap.org/img/w/:icon",
     template: '<div class="weatherIcon"><img src=":iconurl"></div><div>T: :temperature°F</div><div>H: :humidity%</div><div>W: :winddirection :windspeed m/s</div>',
     translateWindDirection: function(text) {
       return text;
@@ -35,7 +35,7 @@ L.Control.Weather = L.Control.extend({
   refresh: function(callback) {
     var _this = this,
       center = this._map.getCenter(),
-      url = "http://api.openweathermap.org/data/2.5/weather?lat=:lat&lon=:lng&lang=:lang&units=:units&appid=:appkey";
+      url = "https://api.openweathermap.org/data/2.5/weather?lat=:lat&lon=:lng&lang=:lang&units=:units&appid=:appkey";
     var apiKey = this.options.apiKey;
 
     url = url.replace(":lang", this.options.lang);
