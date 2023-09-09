@@ -17,6 +17,7 @@
     </p>
     <div id="map" style="height:400px"></div>
     <script>
+      const apiKey = '489c3d104ae5fa52cce724e52a84621a';
       $(function() {
 
         // create a map in the "map" div, set the view to a given place and zoom
@@ -27,7 +28,9 @@
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.control.weather().addTo(map);
+        L.control.weather({
+          apiKey
+        }).addTo(map);
       });
     </script>
   </body>
